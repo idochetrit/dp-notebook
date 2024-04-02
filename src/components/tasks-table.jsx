@@ -37,9 +37,18 @@ const getProgressClass = progress => {
     }
 };
 
-const exampleTaskPlaceholder = ["Read a book", "Write a blog post", "Learn a new language"];
+const exampleTaskPlaceholder = ["Read a book", "Write a blog post", "Learn a new language",
+    "Work on a project", "Exercise", "Meditate", "Do yoga", "Go for a walk", "Cook a meal",
+    "Clean the house", "Do laundry", "Watch a movie", "Listen to music", "Play a game"
+];
 const getRandTaskPlaceholder = () =>
     exampleTaskPlaceholder[Math.floor(Math.random() * exampleTaskPlaceholder.length)];
+
+    const startPomo = task => {
+        return () => {
+            console.log("Starting pomo for task:", task);
+        };  
+    };
 
 function TasksTable() {
     const table = createSolidTable({
@@ -71,10 +80,9 @@ function TasksTable() {
                 ),
             },
             {
-                accessorKey: "time",
                 header: "Pomo",
-                cell: row => (
-                    <button class="btn btn-md">
+                cell: ({row}) => (
+                    <button class="btn btn-md" onclick={startPomo(row.original)}>
                         <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="32" cy="32" r="28" fill="#ff5347" />
 
